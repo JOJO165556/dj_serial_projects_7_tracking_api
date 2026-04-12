@@ -23,7 +23,7 @@ class Parcel(models.Model):
         related_name='sent_parcels',
     )
 
-    recruiter_name = models.CharField(max_length=120)
+    receiver_name = models.CharField(max_length=120)
     receiver_phone = models.CharField(max_length=20)
 
     pickup_address = models.CharField(max_length=255)
