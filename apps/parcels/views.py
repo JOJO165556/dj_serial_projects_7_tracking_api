@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from .models import Parcel
 from .serializers import ParcelSerializer
 from apps.tracking.serializers import TrackingEventSerializer
+from .services import assign_nearest_courier
+
 
 class ParcelCreateView(generics.CreateAPIView):
     queryset = Parcel.objects.all()
@@ -30,4 +32,21 @@ class ParcelTrackingView(APIView):
             "tracking_code": parcel.tracking_code,
             "status": parcel.status,
             "events": serializer.data
+        })
+
+class AssignCourierView(APIView):
+    def post(self, request, parcel_id):
+        try:
+            parcel = Parcel.objects.get(id=parcel_id)
+        except Parcel.DoesNotExist:
+            return Response({"error": "Parcel not found"}, status=404)
+
+        courier = assign_nearest_courier(parcel)
+
+        if not courier:
+            return Response({"message": "No courier available"}, status=200)
+
+        return Response({
+            "message": "Courier assigned",
+            "courier": courier.user.username
         })
