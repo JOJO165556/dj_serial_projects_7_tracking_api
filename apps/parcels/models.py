@@ -45,6 +45,9 @@ class Parcel(models.Model):
 
     tracking_code = models.CharField(max_length=20, unique=True)
 
+    pickup_lat = models.FloatField(null=True, blank=True)
+    pickup_lng = models.FloatField(null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

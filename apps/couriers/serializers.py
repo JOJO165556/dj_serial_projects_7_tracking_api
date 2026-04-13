@@ -12,3 +12,8 @@ class CourierSerializer(serializers.ModelSerializer):
             "is_available",
         ]
         read_only_fields = ["user"]
+
+class CourierLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourierProfile
+        fields = ["latitude", "longitude"]
