@@ -1,5 +1,7 @@
 from apps.couriers.models import CourierProfile
 from apps.couriers.utils import calculate_distance
+from tracking.services import create_tracking_event
+
 
 #Assignation auto au livreur le plus proche
 def assign_nearest_courier(parcel):
@@ -33,5 +35,11 @@ def assign_nearest_courier(parcel):
 
         best_courier.is_available = False
         best_courier.save()
+
+        create_tracking_event(
+            parcel,
+            "assigned",
+            f"Assigned to {best_courier.user.username}"
+        )
 
     return best_courier

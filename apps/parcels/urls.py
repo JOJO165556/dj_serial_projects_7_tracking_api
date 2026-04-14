@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import ParcelCreateView, ParcelListView, ParcelTrackingView, AssignCourierView
+from .views import ParcelCreateView, ParcelListView, ParcelTrackingView, AssignCourierView, UpdateParcelStatusView
 
 urlpatterns = [
     path("", ParcelListView.as_view(), name="parcels"),
     path("create/", ParcelCreateView.as_view(), name="create"),
     path("track/<str:code>/", ParcelTrackingView.as_view(), name="track"),
     path("assign/<uuid:parcel_id>/", AssignCourierView.as_view()),
+    path("status/<uuid:parcel_id>/", UpdateParcelStatusView.as_view()),
 ]
