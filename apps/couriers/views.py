@@ -3,6 +3,7 @@ from rest_framework.exceptions import PermissionDenied, NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from apps.users.permissions import IsCourier
 
 from .models import CourierProfile
 from .serializers import CourierSerializer
@@ -11,8 +12,9 @@ from .utils import calculate_distance
 
 class CourierUpdateLocationView(generics.UpdateAPIView):
     serializer_class = CourierSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsCourier]
 
+    @property
     def get_object(self):
         user = self.request.user
 

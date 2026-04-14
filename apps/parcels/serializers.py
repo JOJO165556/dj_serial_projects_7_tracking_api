@@ -1,6 +1,8 @@
 import random
 import string
 from rest_framework import serializers
+
+from tracking.services import create_tracking_event
 from .models import Parcel
 
 def generate_tracking_code():
@@ -35,7 +37,11 @@ class ParcelSerializer(serializers.ModelSerializer):
                 break
 
         validated_data["tracking_code"] = code
-        return super().create(validated_data)
+        parcel = super().create(validated_data)
+
+        create_tracking_event(parcel, "created", "Parcel created")
+
+        return parcel
 
     def validate(self, data):
         if data.get("pickup_lat") is None or data.get("pickup_lng") is None:
