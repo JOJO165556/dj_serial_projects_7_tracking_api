@@ -28,6 +28,10 @@ INSTALLED_APPS = [
     'apps.parcels',
     'apps.tracking',
     'apps.realtime',
+    'apps.dashboard',
+    'apps.analytics',
+    'apps.notifications',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +44,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS":
+"drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Tracking API",
+    "DESCRIPTION": "Logistics tracking system",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SECURITY": [{"BearerAuth": []}],
+}
 
 ROOT_URLCONF = 'config.urls'
 AUTH_USER_MODEL = "users.User"
@@ -75,7 +92,9 @@ db_url = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/db.sqlite3")
 DATABASES = {
     'default': dj_database_url.parse(
         db_url,
-        conn_max_age=600)}
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

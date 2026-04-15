@@ -1,7 +1,36 @@
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.pyc
-.env
+*.pyo
+
+# Virtual environment
 venv/
+
+# Django
+*.log
+local_settings.py
 db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment variables
+.env
+.env.*
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
