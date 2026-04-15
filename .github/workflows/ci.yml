@@ -44,7 +44,6 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
           SECRET_KEY: ci-secret-key-not-used-in-prod
-        working-directory: tracking_api
         run: |
           python manage.py migrate
 
@@ -52,7 +51,6 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
           SECRET_KEY: ci-secret-key-not-used-in-prod
-        working-directory: tracking_api
         run: |
           coverage run --source='.' manage.py test
           coverage report --fail-under=70
@@ -62,9 +60,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: tracking_api/coverage.xml
+          path: coverage.xml
 
       - name: Run lint
-        working-directory: tracking_api
         run: |
           flake8 . --max-line-length=120 --exclude=migrations,venv,__pycache__
