@@ -47,7 +47,7 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS":
-"drf_spectacular.openapi.AutoSchema",
+    "drf_spectacular.openapi.AutoSchema",
 }
 
 SPECTACULAR_SETTINGS = {

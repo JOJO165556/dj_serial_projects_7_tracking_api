@@ -9,12 +9,13 @@ import uuid
 
 User = get_user_model()
 
+
 class AnalyticsTests(APITestCase):
     def setUp(self):
         self.client_user = User.objects.create_user(
             username="client_analytics", password="password123", role="client", phone="000"
         )
-        
+
         # Colis livré
         self.parcel_delivered = Parcel.objects.create(
             id=uuid.uuid4(),
@@ -23,7 +24,8 @@ class AnalyticsTests(APITestCase):
             tracking_code="TG111111"
         )
         # On simule l'historique
-        TrackingEvent.objects.create(parcel=self.parcel_delivered, event_type="created", created_at=timezone.now() - timedelta(hours=2))
+        TrackingEvent.objects.create(parcel=self.parcel_delivered, event_type="created",
+                                     created_at=timezone.now() - timedelta(hours=2))
         TrackingEvent.objects.create(parcel=self.parcel_delivered, event_type="delivered", created_at=timezone.now())
 
         # Colis en attente
@@ -37,10 +39,10 @@ class AnalyticsTests(APITestCase):
     def test_parcel_kpis_calculation(self):
         """Valide les agrégations de KPIs liées aux colis"""
         kpis = parcel_kpis()
-        
+
         self.assertEqual(kpis["total"], 2)
         self.assertEqual(kpis["delivered"], 1)
         self.assertEqual(kpis["pending"], 1)
-        
+
         # Le temps de livraison doit avoir été capturé proprement
         self.assertTrue(kpis["avg_delivery_time_seconds"] > 0)

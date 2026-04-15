@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import CourierProfile
 
+
 class CourierSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourierProfile
@@ -12,6 +13,7 @@ class CourierSerializer(serializers.ModelSerializer):
             "is_available",
         ]
         read_only_fields = ["user"]
+
 
 class CourierLocationSerializer(serializers.ModelSerializer):
     class Meta:

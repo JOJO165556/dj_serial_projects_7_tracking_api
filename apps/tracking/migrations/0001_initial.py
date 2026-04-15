@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
             name='TrackingEvent',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('event_type', models.CharField(choices=[('created', 'Created'), ('assigned', 'Assigned'), ('picked', 'Picked up'), ('in_transit', 'In transit'), ('delivered', 'Delivered')], max_length=20)),
+                ('event_type', models.CharField(choices=[('created', 'Created'), ('assigned', 'Assigned'), (
+                    'picked', 'Picked up'), ('in_transit', 'In transit'), ('delivered', 'Delivered')], max_length=20)),
                 ('description', models.TextField(blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('parcel', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='events', to='parcels.parcel')),
