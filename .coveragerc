@@ -1,0 +1,18 @@
+[run]
+source = .
+omit =
+    */migrations/*
+    */venv/*
+    manage.py
+    config/asgi.py
+    config/wsgi.py
+    config/routing.py
+    apps/realtime/consumers.py
+    apps/realtime/middleware.py
+    apps/realtime/routing.py
+    apps/notifications/consumers.py
+    config/settings/prod.py
+
+[report]
+show_missing = true
+skip_covered = false
