@@ -47,4 +47,4 @@ class JWTWebSocketAuthMiddleware:
                 # Token invalide, expiré ou utilisateur supprimé — on garde AnonymousUser
                 pass
 
-        return await self.app(scope, receive, send)
+        return await self.app(scope, receive, send)
