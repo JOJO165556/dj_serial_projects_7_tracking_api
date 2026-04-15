@@ -22,7 +22,8 @@ class Migration(migrations.Migration):
                 ('longitude', models.FloatField(blank=True, null=True)),
                 ('is_available', models.BooleanField(default=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='courier_profile', to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='courier_profile', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

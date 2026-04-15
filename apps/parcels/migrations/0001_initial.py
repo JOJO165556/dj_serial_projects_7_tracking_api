@@ -23,11 +23,14 @@ class Migration(migrations.Migration):
                 ('receiver_phone', models.CharField(max_length=20)),
                 ('pickup_address', models.CharField(max_length=255)),
                 ('delivery_address', models.CharField(max_length=255)),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('assigned', 'Assigned'), ('picked', 'Picked Up'), ('in_transit', 'In transit'), ('delivered', 'Delivered')], default='pending', max_length=20)),
+                ('status', models.CharField(choices=[('pending', 'Pending'), ('assigned', 'Assigned'), ('picked', 'Picked Up'), (
+                    'in_transit', 'In transit'), ('delivered', 'Delivered')], default='pending', max_length=20)),
                 ('tracking_code', models.CharField(max_length=20, unique=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('assigned_courier', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='deliveries', to=settings.AUTH_USER_MODEL)),
-                ('sender', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sent_parcels', to=settings.AUTH_USER_MODEL)),
+                ('assigned_courier', models.ForeignKey(blank=True, null=True,
+                 on_delete=django.db.models.deletion.SET_NULL, related_name='deliveries', to=settings.AUTH_USER_MODEL)),
+                ('sender', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='sent_parcels', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

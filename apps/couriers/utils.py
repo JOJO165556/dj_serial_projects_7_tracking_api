@@ -1,11 +1,12 @@
 import math
 
+
 def calculate_distance(lat1, lon1, lat2, lon2):
     """
     Calcule la distance entre deux points GPS (lat, lon) en kilomètres
     en utilisant la formule de Haversine
     """
-    R = 6371 #Rayon terre en km
+    R = 6371  # Rayon terre en km
 
     dlat = math.radians(lat2 - lat1)
     dlon = math.radians(lon2 - lon1)
